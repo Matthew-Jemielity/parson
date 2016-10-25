@@ -58,6 +58,28 @@ static char * read_file(const char * filename);
 static int tests_passed;
 static int tests_failed;
 
+struct JSON_Allocator_Ctx_s {
+  int malloc_count;
+  size_t malloced_bytes;
+  int free_count;
+};
+
+/* will be zeroed */
+static JSON_Allocator_Ctx test_allocator_ctx;
+
+static void * test_malloc(size_t size, JSON_Allocator_Ctx * ctx) {
+  if (NULL == ctx) { return NULL; }
+  ++(ctx->malloc_count);
+  ctx->malloced_bytes += size;
+  return malloc(size);
+}
+
+static void test_free(void * pointer, JSON_Allocator_Ctx * ctx) {
+  if (NULL == ctx) { return; }
+  ++(ctx->free_count);
+  free(pointer);
+}
+
 int main() {
     /* Example functions from readme file:      */
     /* print_commits_info("torvalds", "linux"); */
@@ -76,6 +98,25 @@ int main() {
     test_suite_9();
     printf("Tests failed: %d\n", tests_failed);
     printf("Tests passed: %d\n", tests_passed);
+
+    puts("Second pass, custom allocator");
+    json_set_allocation_ctx_functions(&test_allocator_ctx, test_malloc, test_free);
+    test_suite_1();
+    test_suite_2_no_comments();
+    test_suite_2_with_comments();
+    test_suite_3();
+    test_suite_4();
+    test_suite_5();
+    test_suite_6();
+    test_suite_7();
+    test_suite_8();
+    test_suite_9();
+    printf("# of allocations: %d\n", test_allocator_ctx.malloc_count);
+    printf("# of frees: %d\n", test_allocator_ctx.free_count);
+    printf("Total bytes allocated: %u\n", (unsigned) test_allocator_ctx.malloced_bytes);
+    printf("Tests failed: %d\n", tests_failed);
+    printf("Tests passed: %d\n", tests_passed);
+
     return 0;
 }
 

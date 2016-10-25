@@ -56,9 +56,17 @@ typedef int JSON_Status;
 typedef void * (*JSON_Malloc_Function)(size_t);
 typedef void   (*JSON_Free_Function)(void *);
 
+/* The following types are defined for users that need to pass context for their custom allocators.
+   JSON_Allocator_Ctx is forward-defined, allowing users to implement their own structure and retain
+   type safety of a custom type */
+typedef struct JSON_Allocator_Ctx_s JSON_Allocator_Ctx;
+typedef void * (*JSON_Malloc_Ctx_Function)(size_t, JSON_Allocator_Ctx *);
+typedef void   (*JSON_Free_Ctx_Function)(void *, JSON_Allocator_Ctx *);
+
 /* Call only once, before calling any other function from parson API. If not called, malloc and free
-   from stdlib will be used for all allocations */
+   from stdlib will be used for all allocations. Use either context-aware or context-free setter */
 void json_set_allocation_functions(JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun);
+void json_set_allocation_ctx_functions(JSON_Allocator_Ctx * ctx, JSON_Malloc_Ctx_Function malloc_fun, JSON_Free_Ctx_Function free_fun);
 
 /* Parses first JSON value in a file, returns NULL in case of error */
 JSON_Value * json_parse_file(const char *filename);
