@@ -1,4 +1,4 @@
-VPATH = $(top_srcdir)
+VPATH = $(top_srcdir) $(top_builddir)
 # Those gcc flags will be applied always upon compilation. They increase
 # verbosity of warnings reported by the compiler.
 AM_CFLAGS = -Wall -Wextra -pedantic
@@ -16,6 +16,7 @@ PARSON_PUBLIC_VERSION_PATCH=1
 BASE_INCLUDES = -I$(top_srcdir)
 BASE_FLAGS =
 BASE_FLAGS += -DPARSON_PUBLIC_VERSION="\"$(PARSON_PUBLIC_VERSION_MAJOR).$(PARSON_PUBLIC_VERSION_MINOR).$(ISW_ALTERNATIVE_MASTER_PROJECT_VERSION_PATCH)\""
+BASE_FLAGS += -DPARSON_RESOURCE_DIR="\"$(abs_top_srcdir)/\""
 
 EXTRA_DIST = package.json tests
 
@@ -30,7 +31,7 @@ api_base_dir = $(includedir)/parson
 api_base__HEADERS = parson.h
 
 tests.cpp: tests.c
-	ln -s $< $@
+	ln -s $(abs_top_srcdir)/tests.c $@
 
 CLEANFILES = tests.cpp
 
@@ -42,8 +43,8 @@ PARSON_UNIT_TESTS = \
 TESTS = $(PARSON_UNIT_TESTS)
 check_PROGRAMS = $(PARSON_UNIT_TESTS)
 
-TEST_C_FLAGS = -O0 -g
-TEST_CXX_FLAGS = -O0 -g
+TEST_C_FLAGS = -O0 -g ${BASE_FLAGS}
+TEST_CXX_FLAGS = -O0 -g ${BASE_FLAGS}
 TEST_CPP_FLAGS = ${BASE_INCLUDES}
 TEST_LD_FLAGS =
 TEST_LDADD = libparson.la
