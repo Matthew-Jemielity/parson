@@ -1,0 +1,713 @@
+commit 19cd299b77df1461ea7bd0954f540977d9ee7dbe
+Author: Mateusz Jemielity <m.jemielity@is-wireless.com>
+Date:   Wed Oct 26 11:41:44 2016 +0200
+
+    Testing binary returns non-zero value if any test failed. This is
+    preparation for testing through autotools.
+
+commit b71b5093e5db266a64f424ce444dacdc10fde93e
+Author: Mateusz Jemielity <m.jemielity@is-wireless.com>
+Date:   Tue Oct 25 18:00:51 2016 +0200
+
+    Added use of allocators that use context.
+    This should enable use of more custom allocators.
+
+commit b61c03e6149d5ebf234f16f77f7410b44cd281ce
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Sep 25 10:49:58 2016 +0100
+
+    Updates README.md.
+
+commit 1bcab43c381ec696dd5e91d254349445e3ad65dd
+Merge: 642f0cb d198f6e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Sep 22 22:43:26 2016 +0100
+
+    Merge pull request #55 from jmlemetayer/unsigned
+    
+    Add support to print unsigned integers
+
+commit d198f6ebfe004b4301beb6769a6930c5fefd8af1
+Author: Jean-Marie Lemetayer <jeanmarie.lemetayer@gmail.com>
+Date:   Tue Sep 20 16:47:35 2016 +0200
+
+    Add support to print unsigned integers
+    
+    Else numbers between INT_MAX and UINT_MAX will be printed using double format
+
+commit 642f0cb4f58ec068c436719f81dcedac331be6b7
+Merge: c22be79 7b90bbb
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Sep 10 09:25:41 2016 +0100
+
+    Merge pull request #52 from t-k-/escape
+    
+    Further escape \x00 - \x1F control characters.
+
+commit 7b90bbbf24cc40b5cc1a8cf1688770a87367b708
+Author: t-k- <clock126@126.com>
+Date:   Thu Sep 8 21:01:02 2016 +0800
+
+    Further escape \x00 - \x1F control characters.
+
+commit c22be794ce4d1befbb8c68487a96a6aa8d482e90
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Aug 23 20:57:10 2016 +0100
+
+    Using braces in every if statement + whitespace cleanup.
+
+commit a1c356eaa9a0a2b31d05b7ff597b570afb421165
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jul 5 12:23:17 2016 +0200
+
+    Adds functions to check if object has value with a certain name (and optionally type).
+    
+    This closes #42.
+
+commit bcefc459dd4aa95b93d416f1af2cd20330171a8d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jul 5 11:52:24 2016 +0200
+
+    Changes skip_quotes return type to JSON_Status.
+
+commit 8075050bc1b1a5c07327bc3af034c2e412df5ec7
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jul 5 11:45:41 2016 +0200
+
+    Fixes #43
+
+commit 21c03640485c95e168dbad26bfed3f87b3804041
+Merge: f60ddcd 1c1b77a
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Jun 6 21:11:05 2016 +0100
+
+    Merge pull request #41 from jacobenget/master
+    
+    Fix for array element validation
+
+commit 1c1b77aa7e055f4f7d755522c6a7ce08d0b3a461
+Author: Jacob Enget <jacob.enget@gmail.com>
+Date:   Mon Jun 6 13:45:14 2016 -0500
+
+    Fixes typo causing problems with array element validation
+
+commit 9d6fbde0c478f8e1ec3e382a529bf2aa45bc8966
+Author: Jacob Enget <jacob.enget@gmail.com>
+Date:   Mon Jun 6 13:44:44 2016 -0500
+
+    Adds test that fails when validating array elements
+
+commit f60ddcd05b4e5122f727854949244d8b1dc0548e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 23 12:15:13 2016 +0200
+
+    Adds missing character (in a comment).
+
+commit 5c4a11b036801a87ece9d2fcf5c54cb0ef94e419
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 23 12:11:25 2016 +0200
+
+    Removes trailing whitespace.
+
+commit 473c7f3d8de61d8da2bbd4a57af550ad56807fd7
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 23 11:59:34 2016 +0200
+
+    Adds json_object_get_value_at function to access values in objects in O(1) time.
+    
+    Also adds some missing null checking.
+
+commit 77ef99571e94ae69bfd050e8327b08635c237751
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 23 11:42:09 2016 +0200
+
+    Avoiding _CRT_SECURE_NO_WARNINGS redefinition.
+
+commit 0c04a7e678e5e95985f8a5e977aca0ecfcde7d81
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 16 12:35:44 2016 +0100
+
+    Removes unnecessary SKIP_WHITESPACES.
+
+commit f860d3dd1b52b6cec3e69b9212641414a4ede9d1
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 16 12:30:46 2016 +0100
+
+    Accepting json texts that are not objects or arrays.
+    
+    According to RFC 7159 it's now valid to accept json texts that are not object or arrays.
+    Also reordered realloc opeartion in json_object_add to not be called if key already exists.
+
+commit 19c11750643cff6279cabac8939823dbf8aca24c
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Mar 3 18:52:30 2016 +0000
+
+    Fixes a bug where fopen() error was being ignored.
+
+commit d7726760e0532eaa65e439c3f9403312d819be52
+Merge: c9b920c c271337
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Feb 8 20:50:21 2016 +0100
+
+    Merge pull request #35 from vovanec/patch-1
+    
+    Fixed error condition on malloc failure.
+
+commit c27133715b12e3672108783b67fc7a9bc22b7c1f
+Author: Volodymyr Kuznetsov <vovanec@gmail.com>
+Date:   Fri Feb 5 13:31:05 2016 -0800
+
+    Fixed error condition on malloc failure.
+    
+    Fixed error condition on malloc failure, it looks like it should be temp_values, not temp_names.
+
+commit c9b920c4a3eaef8145584a5cad60d3b52495ee8d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Jan 13 20:47:47 2016 +0000
+
+    Fixes a bug in json_array_remove and adds relevant tests (thanks to KB for finding this).
+    
+    Also - it's 2016, time to update copyright notices, yay!
+
+commit 8324ff92bf91c644458524b3b5fb45f2d2d2d7ba
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Nov 8 16:34:34 2015 +0000
+
+    Escaping / to make json embeddable in xml\/html.
+
+commit 849f00728b338aac6694728603b463667e79c81d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Oct 5 08:37:25 2015 +0100
+
+    parson should compile with c++ compilers (again).
+
+commit 86a5a20856a2e33557aedd218a8b94b510586242
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Jul 15 22:29:14 2015 +0100
+
+    Adds comments regarding memory management.
+
+commit 18761d99ff355d7294285ec1246baee67986db69
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Fri Jul 3 19:12:48 2015 +0100
+
+    Checking if json_serialization_size failed.
+
+commit 8eb5eab54d57d416ae37eb53e3a123865fdaccbd
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Jul 1 19:24:16 2015 +0100
+
+    Checking if serialization_size is <0 before casting from int to size_t.
+
+commit f16e4292f362bc1b7d805935cc6f134231b754b7
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Fri Jun 26 00:12:06 2015 +0200
+
+    Using same code for determining serialization buffer size and serialization. Updated license year.
+
+commit 83a0a3e1331bd88377250e2e37e56f23601670ac
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Jun 25 12:11:01 2015 +0200
+
+    Changed "json_serialize_to_buffer_r" to return  number of written characters.
+
+commit f4538fa53d4e237f260cbb988fe68e9930668015
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Jun 22 23:55:26 2015 +0200
+
+    Small change in test files.
+
+commit f4cfcd7699c1833a6065873baf6a5fe0b3de2fdb
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Jun 22 19:30:06 2015 +0200
+
+    Updates serialization example and readme.md
+
+commit 69055482576de99a36124222e43685ec2262e99e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Jun 22 16:53:19 2015 +0200
+
+    Pretty serialization + tests.
+
+commit 15864612805caabe152a9fbe20d56aceb86be847
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Jun 1 22:26:31 2015 +0100
+
+    Adds function to change default allocator, fixes potential memory leak, refactoring.
+
+commit 7fd8dc1c4cbc6bc4ce4fef7e1fcbb880a231eae8
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun May 3 12:55:48 2015 +0100
+
+    UTF8 validation in json_value_init_string (+ tests).
+
+commit 7ead2102b8d82d4f8717056adf565f46102b18c1
+Merge: 2b4d17b 9782447
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Apr 29 21:49:51 2015 +0100
+
+    Merge pull request #29 from i-rinat/fixups
+    
+    Handle failures.
+
+commit 9782447a745e865e536a6e9e25779307b8fc4641
+Author: Rinat Ibragimov <ibragimovrinat@mail.ru>
+Date:   Wed Apr 29 22:44:17 2015 +0300
+
+    free temporary JSON_Value's on failure
+
+commit 717e551cb2f02595601e28fd428e1c99d0e763bc
+Author: Rinat Ibragimov <ibragimovrinat@mail.ru>
+Date:   Wed Apr 29 21:46:18 2015 +0300
+
+    free memory after json_value_init_string_no_copy() failure
+
+commit 33b77673cbf634accd9730963de46147c75ff1a5
+Author: Rinat Ibragimov <ibragimovrinat@mail.ru>
+Date:   Wed Apr 29 21:27:41 2015 +0300
+
+    check if ftell() returns -1
+
+commit 2b4d17b3376488f17d3e9ba9822d85a2fd55f8a1
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Apr 25 18:31:35 2015 +0100
+
+    Replaced strlen in process_string with pointer arithmetic.
+
+commit 4a4cf7d795ad07d24c166a8f45095c948037ca0e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Apr 6 10:12:04 2015 +0200
+
+    Not parsing strings in json_value_init_string and *{set,dotset,replace,append}_string functions.
+
+commit 0d5ac452865d24046f19e26d7053a43bcdb3a564
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Apr 5 15:26:58 2015 +0200
+
+    Added additional null checks and tests.
+
+commit 81c2fd0186cafb43c6b4c190b50bb3a4fef1827e
+Merge: 1058e3b fcf0b81
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Mar 1 09:36:38 2015 +0000
+
+    Merge pull request #23 from michaelsproul/no-exec-perms
+    
+    Mark various files as not executable.
+
+commit fcf0b810ba2ef3bb818a066b882cd5403b49397a
+Author: Michael Sproul <micsproul@gmail.com>
+Date:   Sat Feb 28 20:33:17 2015 -0800
+
+    Marked various files as not executable.
+    
+    Also updated the .gitignore file to ignore object code,
+    which is particularly useful when using this project as a
+    git submodule.
+
+commit 1058e3b2c0272dde74b06306b56bd039f54208a0
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Nov 24 21:04:15 2014 +0100
+
+    Fixed bug in example code.
+
+commit f57f2d94bba74dd39654082a340ed74804588ab2
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Nov 23 20:13:39 2014 +0100
+
+    No longer escaping '/' when serializing.
+
+commit c88c775d231832bcc361455a5074a62ca8df2780
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Nov 23 12:39:47 2014 +0100
+
+    Fixed floating point number comparison in tests (using fabs).
+
+commit 69927e1612da2246f70ca1652070aa49669b9e50
+Merge: e4ac463 775b2b2
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Nov 12 13:40:06 2014 +0000
+
+    Merge pull request #18 from gageas/master
+    
+    Fix compile error on C++ compiler.
+
+commit 775b2b21d0ac735314983e09e2f0982067a33dd9
+Author: @gageas <arguments.callee@gmail.com>
+Date:   Wed Nov 12 19:32:09 2014 +0900
+
+    Fix compile error on C++ compiler. (mismatch between char* and const char*)
+
+commit e4ac46318e6f188b2144c03f6ef948dcc2f1683e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Oct 8 14:45:39 2014 +0200
+
+    Fixed memory leak in example.
+
+commit 638190d6a07988fc597d0a844c0a347044e86e50
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Oct 7 21:11:29 2014 +0200
+
+    Merged changes from parson-devel (serialization, copying, comparing, validation, creating values).
+
+commit 55856a2eab1d9443b842c26272bd0595cd13bdbc
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jul 29 21:27:19 2014 +0200
+
+    Changes to readme.
+
+commit 6e9e934b5a536efb8df34d6336536b16970b310a
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jun 10 20:59:35 2014 +0200
+
+    Bugfix in parsing escaped characters (+ additional tests to prevent this bug in future).
+    
+    Thanks to Joseph Werle for bringing attention to it.
+
+commit c7070517783d89e47618d19936d2bff209dc8986
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Apr 10 17:00:40 2014 +0200
+
+    Added surrogate pairs support (JSON support is full now), removed PARSON_VERSION macro.
+
+commit 19a0d79db46d8d38e44f95c16043756745313ccb
+Merge: 148e0cc ce73431
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Apr 3 21:18:15 2014 +0200
+
+    Merge pull request #13 from indutny/fix/handling-files-with-whitespace
+    
+    Skip whitespace at the start of string/file
+
+commit ce734317536ef2cfb2aedad87a3d3b4c33167423
+Author: Fedor Indutny <fedor@indutny.com>
+Date:   Thu Apr 3 14:59:03 2014 +0400
+
+    Skip whitespace at the start of string/file
+
+commit 148e0ccbef0936f11ca2880c4e9bb8cd4bde1487
+Merge: 08a4396 4413910
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Fri Dec 6 12:32:21 2013 -0800
+
+    Merge pull request #12 from stephenmathieson/fix/memory-leak
+    
+    Fix memory leak
+
+commit 4413910346e81f493873dd0ada3a8d8f859569f4
+Author: Stephen Mathieson <smath23@gmail.com>
+Date:   Fri Dec 6 14:31:18 2013 -0500
+
+    Fix memory leak
+    
+    If `fread` fails, `file_contents` is leaked.  I’m just freeing the memory allocated :)
+
+commit 08a4396b3287c8e132663b3b497880dc30cc657d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 30 20:35:55 2013 +0100
+
+    Fixed warnings and error resulting in printing string without comments (old debug statement).
+
+commit d901014d5503293ab523a8a7f7cbe0ae5a91acd7
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 30 20:28:55 2013 +0100
+
+    New lines after flow control statements are now consistent.
+
+commit d5adf4e2917d9d9cadc84b0f1776ee1d1e193b7c
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 30 20:22:16 2013 +0100
+
+    Added functions to parse file with comments and new tests.
+    
+    json_parse_value_with_comments and json_parse_string_with_comments replace comments with whitespaces before parsing. Supported comments are: /* */ and //
+
+commit 080325e56682ccf1ede47014e57eaf09d721b776
+Merge: a8c04fa 18fe24a
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Nov 25 13:45:45 2013 -0800
+
+    Merge pull request #11 from stephenmathieson/add/package.json
+    
+    Adds a package.json file.
+
+commit 18fe24a8c03edb1f5d0e5d732e575acbd783e3b6
+Author: Stephen Mathieson <smath23@gmail.com>
+Date:   Sun Nov 24 23:14:48 2013 -0500
+
+    adding a package.json file
+
+commit a8c04faa39c3101c4b545df79dcb8b6582e50b33
+Merge: 713b563 3585c6d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Fri Oct 25 13:09:38 2013 -0700
+
+    Merge pull request #10 from spt5007/master
+    
+    Check ferror if fread call fails in json_parse_file
+
+commit 3585c6d03007cedfc1537e86ca2931f5893f20cb
+Author: Sean Turley <spt5007@arl.psu.edu>
+Date:   Fri Oct 25 15:18:35 2013 -0400
+
+    Check ferror if fread call fails in json_parse_file
+
+commit 713b5633756c76f7770841cfa283cc434fab2215
+Merge: a024f11 cbb5171
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Oct 10 10:35:18 2013 -0700
+
+    Merge pull request #8 from sylvain-miermont/master
+    
+    Warning when compiling with -O2
+
+commit cbb51719cf12c90b79846d670197b13fb2dd1590
+Author: Sylvain Miermont <smiermont@semtech.com>
+Date:   Thu Oct 10 14:28:45 2013 +0200
+
+    Checking that fread *actually* succeeds, fix the warning bellow when compiling with -O1, -O2 or -O3.
+    "warning: ignoring return value of 'fread', declared with attribute warn_unused_result"
+
+commit a024f1197cfd14a859360c6e166dfd05e10e2869
+Merge: 9dfee46 7ee068b
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Jul 2 09:26:10 2013 -0700
+
+    Merge pull request #6 from spotmx/macrobug
+    
+    Fix macro argument bug.
+
+commit 7ee068b7a623ec5b0e60caddef95914138f79cc5
+Author: Erik Dubbelboer <erik@dubbelboer.com>
+Date:   Tue Jul 2 18:01:20 2013 +0200
+
+    Fix macro argument bug
+
+commit 9dfee468217e1c88ab7c26bc43c48a828ba053aa
+Merge: 29595c8 155f7f0
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Feb 7 00:27:28 2013 -0800
+
+    Merge pull request #5 from 9re/master
+    
+    Allow utf-8 encoded strings.
+
+commit 155f7f06394b5c9dd310b420c864c91ac92f5097
+Author: Taro Kobayashi <9re.3000@gmail.com>
+Date:   Thu Feb 7 17:23:57 2013 +0900
+
+    added test that will fails on android
+
+commit cfbf51716613dfee30f22451589fbb7f8978b7fb
+Author: Taro Kobayashi <9re.3000@gmail.com>
+Date:   Thu Feb 7 15:37:27 2013 +0900
+
+    ignore only 0x00-0x19 to support utf-8 characters
+
+commit 29595c80ec52713247b605aabdc0e61fc990d620
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Dec 12 20:28:35 2012 +0100
+
+    Accepting DEL characters in strings.
+    
+    DEL characters are allowed according to JSON's specification (http://www.ietf.org/rfc/rfc4627.txt). Thanks to Fulvio Esposito for pointing this out.
+
+commit c4af3f9583d5f8bd37624cd72edaac90a10250c1
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Dec 11 11:47:18 2012 +0100
+
+    Changed object's and array's initlalization to be lazy.
+    
+    Now object's names and values and array's items are allocated (with starting capacity) only after first item is added.
+    This will prevent wasting memory when parsing empty objects and arrays.
+
+commit d1ca0ed4f3af2cbce2426251e057b7fd4690b459
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Dec 2 22:23:39 2012 +0100
+
+    Readme file update.
+
+commit f48d84bc2c0a3d7be18d9fdab74c158bd9f0a5cf
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Dec 2 18:40:13 2012 +0100
+
+    Makefile update.
+
+commit c24b1a1ad091363d71879c35639edef6c22c79b0
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Dec 2 18:33:00 2012 +0100
+
+    Fixed type mismatch in array indexing variables, updated readme file.
+    
+    Also removed trailing whitespace.
+
+commit 962d9f13ba2c1b1b39d7b014a9369c2810bced87
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Dec 2 18:16:12 2012 +0100
+
+    Added makefile.
+
+commit b2dbaece40e506df40126713fd60ba503a7fbd1e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Dec 2 11:15:48 2012 +0100
+
+    Fixed issue with MSVC and unicode characters.
+    
+    Functions in MSVC's ctype.h create runtime error when passed negative char value.
+
+commit 457fa1100fa36e6e5be4ed728b9c00b8d361155b
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 24 20:59:16 2012 +0100
+
+    Small code cleanup, narrower example code in tests and readme.
+
+commit 5eb66d2b310f63f78e13307fe1ec9ba864e8283e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Nov 7 23:08:23 2012 +0100
+
+    New test case.
+    
+    "object_empty" should  ensure no more bugs in nget function.
+
+commit f7f11572c90ad388a6c0b978dc5b17ea46d9fb8e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Nov 7 22:51:03 2012 +0100
+
+    Fixed bug in nget function, added 2 functions to API, improved memory allocs.
+    
+    Details:
+    - Fixed bug, where json_object_nget_value returned wrong values.
+    - json_object_get_count returns a number of object's name-value pairs.
+    - json_object_get_name returns a name at a specific index.
+    - Both functions allow iterating over every value in a object.
+    - Changed max capacity for JSON_Array and JSON_Object (they're not equal anymore).
+    - Added functions to resize object and array, which are also used after parsing to "trim" them to their real lengths.
+    - Added try_realloc function.
+    - Added SUCCESS and ERROR macros to make code more readable.
+    - Code cleanup.
+
+commit aaf1d45f160b12546a47cdea3e04b7ad41c39987
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Nov 4 17:45:52 2012 +0100
+
+    Code refractoring.
+    
+    Details:
+    - Increased STARTING_CAPACITY from 10 to 15.
+    - Added 2 macros: skip_char and skip_whitespaces.
+    - Added json_object_nget_value function, which removes neccessity to allocate new string when using dotget functions.
+    - Removed parson_strdup function, it was called only once and could be easilly replaced with appropriate call to parson_strndup.
+    - Renamed skip_string to skip_quotes, which is a more appropriate name, and made it work on a passed pointer to a string, which is much like skip_char and skip_whitespaces.
+    - Removed copy_and_remove_whitespaces, it was unncessary, and could be easily replaced with skip_whitepsaces macro.
+    - Merged parse_escaped_characters and get_string to get_processed_string, which makes more sense.
+    - Changed is_decimal implementation, to avoid unncessary string duplicating.
+    - Removed string copying in parse_number value and json_parse_string, since it was unncessary.
+
+commit 202f16cc5c009314743df20bf11df6aabd3d7c9b
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 3 19:52:49 2012 +0100
+
+    Additional code cleanup.
+    
+    Removed redundant typedefs, renamed JSON_value_t to JSON_Value_Type and JSON_value_value to JSON_Value_Value to make names more consistent across project. Added project's name and url above license.
+
+commit ede8ea497a81dd1916b45dbdedb7fc0d202de6bb
+Merge: ee9be98 684096e
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sat Nov 3 11:30:13 2012 -0700
+
+    Merge pull request #1 from sduclos/master
+    
+    Code Clean UP
+
+commit 684096eb0fd94c178bf312627eb685a4bd9146cd
+Author: sduclos <sduclos@Acer-Laptop.(none)>
+Date:   Sat Nov 3 08:19:28 2012 -0400
+
+    code clea up
+
+commit ee9be98974b3fdac0be1cc370bec948613e725d7
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Oct 28 20:18:34 2012 +0100
+
+    Handling realloc, strdup and strndup errors.
+    
+    Also moved void* cast in free to the parson_free macro.
+
+commit 1f7049dd47ccb7c810a385fa4801abef9e2810af
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Sun Oct 28 17:58:24 2012 +0100
+
+    Fixed wrong conditional error and defined realloc as a macro.
+    
+    Thanks to eps for pointing it out :)
+
+commit 2684eeb3601b3f0fa2ee22d6c1875ba61bb2f05a
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Wed Oct 24 10:41:05 2012 +0200
+
+    Not parsing hex and octal values, refractoring, code cleanup, new tests.
+    
+    Also changed parson_strndup and parson_strdup to be static.
+
+commit a3bb4c7390da8c2b1f4a4752a6bf2b6cd1c8591c
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Oct 22 19:25:32 2012 +0200
+
+    Fixed error in the readme file.
+
+commit 120f5a08da5bfdfe2ca18888bb7772c86036e239
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Mon Oct 22 19:20:02 2012 +0200
+
+    Defined malloc and free as macros, also small refractoring.
+    
+    And changes to the readme file.
+
+commit 5edab75bdc559707b3abb9ef526e411e7f583b40
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Fri Oct 19 16:24:24 2012 +0200
+
+    Checking malloc errors, added limits on nesting and object/array size.
+    
+    Also small refractoring and one new test regarding nesting.
+
+commit e36fa2ab418581de73d7a21faac17e02e2d61961
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Oct 18 21:37:03 2012 +0200
+
+    Changes in README.md
+
+commit 9e64c0f0315efa6b15aad1579253707762d0044d
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Oct 18 21:17:16 2012 +0200
+
+    Changed int to size_t to avoid signed/unsigned comparisons
+
+commit 410807850e5639aa2c526109ad2672b58830a883
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Oct 18 17:18:44 2012 +0200
+
+    Fixed some compatibility issues with C++ compilers.
+    
+    Added error type to json value types. Also implemented strdup and strndup, since they can be problematic and are not implemented everywhere.
+
+commit 2740213c5ca1cce58c10857ba8f693a4acae8105
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Thu Oct 18 15:25:11 2012 +0200
+
+    Renamed bool to boolean.
+    
+    Naming variables bool is a poor idea, even in C.
+
+commit cad9bda1e4d622efdbc56044bf5f295e59fb35dd
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Oct 16 22:32:24 2012 +0200
+
+    Included stddef.h in parson.c
+
+commit de829803e3f58731f3438293469fd5d5f8b3fbf0
+Author: Krzysztof Gabis <kgabis@gmail.com>
+Date:   Tue Oct 16 19:56:54 2012 +0200
+
+    Initial commit.

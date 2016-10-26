@@ -28,6 +28,7 @@
 
 #include "parson.h"
 
+#include <stddef.h> /* size_t, NULL */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
