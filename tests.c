@@ -117,7 +117,7 @@ int main() {
     printf("Tests failed: %d\n", tests_failed);
     printf("Tests passed: %d\n", tests_passed);
 
-    return 0;
+    return (0 == tests_failed) ? 0 : 1;
 }
 
 void test_suite_1(void) {
