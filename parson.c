@@ -28,6 +28,7 @@
 
 #include "parson.h"
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -48,31 +49,68 @@
 #undef malloc
 #undef free
 
-/* User code can define their own JSON_Allocator_Ctx_s,
- it won't touch default allocators below and won't affect
- this definition */
-struct JSON_Allocator_Ctx_s {
-    JSON_Malloc_Function parson_malloc;
-    JSON_Free_Function parson_free;
-};
+static void * invalid_access_alloc(size_t size) {
+  (void) size;
+  assert(0);
+  return NULL;
+}
 
-static JSON_Allocator_Ctx default_allocator_ctx = {
-    malloc,
-    free
-};
+static void * invalid_access_free(void * pointer) {
+  (void) pointer;
+  assert(0);
+}
 
-static void * default_parson_malloc(size_t size, JSON_Allocator_Ctx * ctx) {
-    return (ctx->parson_malloc)(size);
+static void * default_parson_alloc(size_t size, JSON_Allocator_Ctx * ctx) {
+    (void) ctx;
+    return malloc(size);
 }
 
 static void   default_parson_free(void * pointer, JSON_Allocator_Ctx * ctx) {
-    (ctx->parson_free)(pointer);
+    (void) ctx;
+    return free(pointer);
 }
 
-/* Context shouldn't be const, as allocator functions can change it. */
-static JSON_Allocator_Ctx * parson_allocator_ctx = &default_allocator_ctx;
-static JSON_Malloc_Ctx_Function parson_malloc = default_parson_malloc;
-static JSON_Free_Ctx_Function parson_free = default_parson_free;
+static void * contextless_parson_alloc(size_t size, JSON_Allocator_Ctx * ctx) {
+    /* if we are here, we know ctx really points to JSON_Parson_State type */
+    JSON_Parson_State * state = (JSON_Parson_State *) ctx;
+    return state->contextless.alloc_(size);
+}
+
+static void   contextless_parson_free(void * pointer, JSON_Allocator_Ctx * ctx) {
+    /* if we are here, we know ctx really points to JSON_Parson_State type */
+    JSON_Parson_State * state = (JSON_Parson_State *) ctx;
+    return state->contextless.free_(pointer);
+}
+
+JSON_Parson_State json_get_parson_state(void) {
+  JSON_Parson_State const default_state = {
+    {
+      invalid_access_alloc,
+      invalid_access_free
+    },
+    NULL,
+    default_parson_alloc,
+    default_parson_free
+  };
+  return default_state;
+}
+
+void json_set_allocation_functions(JSON_Parson_State * state, JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun) {
+    state->contextless.alloc_ = malloc_fun;
+    state->contextless.free_ = free_fun;
+
+    state->user = (JSON_Allocator_Ctx *) state;
+    state->alloc_ = contextless_parson_alloc;
+    state->free_ = contextless_parson_free;
+}
+
+void json_set_allocation_ctx_functions(JSON_Allocator_Ctx * ctx, JSON_Malloc_Ctx_Function malloc_fun, JSON_Free_Ctx_Function free_fun) {
+    state->contextless.alloc_ = invalid_access_alloc;
+    state->contextless.free_ = invalid_access_free;
+    state->user = ctx;
+    state->alloc_ = malloc_fun;
+    state->free_ = free_fun;
+}
 
 #define IS_CONT(b) (((unsigned char)(b) & 0xC0) == 0x80) /* is utf-8 continuation byte */
 
@@ -1950,19 +1988,3 @@ int json_boolean(const JSON_Value *value) {
     return json_value_get_boolean(value);
 }
 
-void json_set_allocation_functions(JSON_Malloc_Function malloc_fun, JSON_Free_Function free_fun) {
-    static JSON_Allocator_Ctx user;
-
-    user.parson_malloc = malloc_fun;
-    user.parson_free = free_fun;
-
-    parson_allocator_ctx = &user;
-    parson_malloc = default_parson_malloc;
-    parson_free = default_parson_free;
-}
-
-void json_set_allocation_ctx_functions(JSON_Allocator_Ctx * ctx, JSON_Malloc_Ctx_Function malloc_fun, JSON_Free_Ctx_Function free_fun) {
-  parson_allocator_ctx = ctx;
-  parson_malloc = malloc_fun;
-  parson_free = free_fun;
-}
